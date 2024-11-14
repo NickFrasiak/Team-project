@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Numerics;
 
-namespace Game10003
+namespace Game10003;
+public class Player
 {
-    public class Player
-    {
 
-    }
 }
