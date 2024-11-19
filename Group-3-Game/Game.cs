@@ -1,4 +1,6 @@
-﻿namespace Game10003;
+﻿using System.Numerics;
+
+namespace Game10003;
 
 public class Game
 {
@@ -8,8 +10,12 @@ public class Game
     // Calling classes 
     Buildings[] buildings = new Buildings[5];
 
+    Player player;
+
     public void Setup()
     {
+        player = new Player();
+
         // Set Window Size
         Window.SetSize(800, 600);
 
@@ -29,13 +35,13 @@ public class Game
 
         // Draw Temporary Ground 
         Draw.LineSize = 0;
-        Draw.FillColor = Color.Black;
+        Draw.FillColor = Color.Green;
         Draw.Rectangle(0, 500, 800, 100);
 
         // Draw Temporary Player 
-        Draw.LineSize = 0;
-        Draw.FillColor = Color.Red;
-        Draw.Rectangle(150, 400, 50, 100);
+       // Draw.LineSize = 0;
+        //Draw.FillColor = Color.Red;
+        //Draw.Rectangle(150, 400, 50, 100);
 
         // Draw the buildings 5 times
         for (int i = 0; i < buildings.Length; i++)
@@ -43,7 +49,17 @@ public class Game
             // Draw and move buildings
             buildings[i].DrawBuildings();
             buildings[i].Move(buildings);
+
+            Vector2 playerPosition1 = player.position;
+
+            float playerSize1 = player.size;
+
+
         }
+        //render player 
+        player.Render();
+        player.UpdatePosition();
+
     }
 
 
