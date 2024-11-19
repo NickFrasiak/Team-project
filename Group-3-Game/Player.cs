@@ -12,23 +12,39 @@ public class Player
     int maxSpeed = 200;
     int jumpHeight = 450;   
     Color color;
-    bool isTouchingGround = false;
     Vector2 gravity = new Vector2(0, 10);
-    
-
 
    
     //Setup Player
     public Player()
     {
-        size = 60;
+        size = Vector2.One * 60;
         position = new Vector2(150, 400);
         velocity = new Vector2();
         color = Color.Red;
-
     }
 
-    //Gravity and Position update
+    // Does Player Collide with Buildings
+    public bool DoesPlayerHitBuildings(Buildings buildings)
+    {
+        float playerLeft = position.X;
+        float playerRight = position.X + size.X;
+        float playerTop = position.Y;
+        float playerBottom = position.Y + size.Y;
+
+        float buildingsLeft = buildings.buildingPosition.X;
+        float buildingsRight = buildings.buildingPosition.X + buildings.buildingSize.X;
+        float buildingsTop = buildings.buildingPosition.Y;
+        float buildingsBottom = buildings.buildingPosition.Y + buildings.buildingSize.Y;
+
+        bool isWithinBuildingsLeftEdge = playerRight > buildingsLeft;
+        bool isWithinBuildingsRightEdge = playerLeft < buildingsRight;
+        bool isWithinBuildingsTopEdge = playerBottom > buildingsTop;
+        bool isWithinBuildingsBottomEdge = playerTop < buildingsBottom;
+        bool isColliding = isWithinBuildingsLeftEdge && isWithinBuildingsRightEdge && isWithinBuildingsTopEdge && isWithinBuildingsBottomEdge;
+
+        return isColliding;
+    }
     public void UpdatePosition()
     {
         //gravity
@@ -40,30 +56,27 @@ public class Player
         {
             velocity.Y = maxSpeed;
         }
-       
-        //ground check
+        //gravity
+        position += velocity * Time.DeltaTime;
+
         if(position.Y > 500 - size)
         {
             velocity.Y = 0;
             position.Y = 500 - size;
-            isTouchingGround = true;
-            
         }
         // spacebar input to jump
-        if (Input.IsKeyboardKeyPressed(KeyboardInput.Space) && isTouchingGround )
+        if (Input.IsKeyboardKeyPressed(KeyboardInput.Space))
         {
             velocity.Y -= velocity.Y + jumpHeight;
             isTouchingGround = false;
         }
-        //Update position
-        position += velocity * Time.DeltaTime;
     }
 
     //Draw Player
     public void Render()
     {
         Draw.FillColor = color;
-        Draw.Rectangle(position.X, position.Y, size / 2, size);
+        Draw.Rectangle(position.X, position.Y, 30, 60);
     }
 
 }
