@@ -12,7 +12,10 @@ public class Player
     int maxSpeed = 200;
     int jumpHeight = 450;   
     Color color;
+    bool isTouchingGround = false;
     Vector2 gravity = new Vector2(0, 10);
+    
+
 
    
     //Setup Player
@@ -24,8 +27,11 @@ public class Player
         color = Color.Red;
 
     }
+
+    //Gravity and Position update
     public void UpdatePosition()
     {
+        //gravity
         if (velocity.Y <= maxSpeed)
         {
             velocity += gravity;
@@ -34,19 +40,23 @@ public class Player
         {
             velocity.Y = maxSpeed;
         }
-        //gravity
-        position += velocity * Time.DeltaTime;
-
+       
+        //ground check
         if(position.Y > 500 - size)
         {
             velocity.Y = 0;
             position.Y = 500 - size;
+            isTouchingGround = true;
+            
         }
         // spacebar input to jump
-        if (Input.IsKeyboardKeyPressed(KeyboardInput.Space))
+        if (Input.IsKeyboardKeyPressed(KeyboardInput.Space) && isTouchingGround )
         {
             velocity.Y -= velocity.Y + jumpHeight;
+            isTouchingGround=false;
         }
+        //Update position
+        position += velocity * Time.DeltaTime;
     }
 
     //Draw Player
