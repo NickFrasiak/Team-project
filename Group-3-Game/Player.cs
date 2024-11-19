@@ -62,13 +62,13 @@ public class Player
         if(position.Y > 500 - size)
         {
             velocity.Y = 0;
-            position.Y = 500 - size;
+            position.Y = 440;
+            isTouchingGround = true;
         }
         // spacebar input to jump
         if (Input.IsKeyboardKeyPressed(KeyboardInput.Space))
         {
             velocity.Y -= velocity.Y + jumpHeight;
-            isTouchingGround = false;
         }
     }
 
