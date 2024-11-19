@@ -1,4 +1,6 @@
-﻿namespace Game10003;
+﻿using System;
+
+namespace Game10003;
 
 public class Game
 {
@@ -26,16 +28,6 @@ public class Game
     public void Update()
     {
         Window.ClearBackground(Color.OffWhite);
-
-        // Draw Temporary Ground 
-        Draw.LineSize = 0;
-        Draw.FillColor = Color.Black;
-        Draw.Rectangle(0, 500, 800, 100);
-
-        // Draw Temporary Player 
-        Draw.LineSize = 0;
-        Draw.FillColor = Color.Red;
-        Draw.Rectangle(150, 400, 50, 100);
 
         // Draw the buildings 5 times
         for (int i = 0; i < buildings.Length; i++)
