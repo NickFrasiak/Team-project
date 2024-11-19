@@ -53,7 +53,7 @@ public class Player
         if (Input.IsKeyboardKeyPressed(KeyboardInput.Space) && isTouchingGround )
         {
             velocity.Y -= velocity.Y + jumpHeight;
-            isTouchingGround=false;
+            isTouchingGround = false;
         }
         //Update position
         position += velocity * Time.DeltaTime;
