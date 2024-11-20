@@ -1,8 +1,12 @@
+using System;
+using System.Numerics;
+
 namespace Game10003;
 public class Game
 {
     // Setting Up Colors
     Color buildingColor = new Color(0x46, 0x47, 0x4c);
+    Color GameOverColor = new Color(254, 129, 129);
 
     // Calling classes 
     Buildings[] buildings = new Buildings[5];
@@ -25,28 +29,38 @@ public class Game
             buildings[i] = building;
         }
     }
+    void GameOverLose()
+    {
 
+        Window.ClearBackground(GameOverColor);
+        Text.Size = 100;
+        Text.Color = Color.White;
+        Text.Draw("GAME OVER :(", 50, 200);
+        
+
+    }
+    void GameOverWin()
+    {
+       
+    }
     public void Update()
     {
         Window.ClearBackground(Color.OffWhite);
 
         // Draw Temporary Ground 
         Draw.LineSize = 0;
-        Draw.FillColor = Color.Black;
+        Draw.FillColor = Color.Green;
         Draw.Rectangle(0, 500, 800, 100);
-
-        // Draw Temporary Player 
-        Draw.LineSize = 0;
-        Draw.FillColor = Color.Red;
-        Draw.Rectangle(150, 400, 50, 100);
 
         // Draw the buildings 5 times
         for (int i = 0; i < buildings.Length; i++)
         {
-
+            
             bool doesBuildingHitPlayer = player.DoesPlayerHitBuildings(buildings[i]);
             if (doesBuildingHitPlayer)
             {
+
+                GameOverLose();
                 Console.WriteLine("Hit");
             }
 
