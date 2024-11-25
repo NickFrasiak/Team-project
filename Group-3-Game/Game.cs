@@ -7,12 +7,12 @@ public class Game
     // Setting Up Colors
     Color buildingColor = new Color(0x46, 0x47, 0x4c);
     Color GameOverColor = new Color(254, 129, 129);
-
+    int Coins = 0;
     // Calling classes 
     Buildings[] buildings = new Buildings[5];
 
     Player player;
-
+    
     public void Setup()
     {
         player = new Player();
@@ -32,8 +32,8 @@ public class Game
     void GameOverLose()
     {
 
-        Window.ClearBackground(GameOverColor);
         Text.Size = 100;
+        Window.ClearBackground(GameOverColor);
         Text.Color = Color.White;
         Text.Draw("GAME OVER :(", 50, 200);
         
@@ -41,7 +41,10 @@ public class Game
     }
     void GameOverWin()
     {
-       
+        Text.Size = 100;
+        Window.ClearBackground(GameOverColor);
+        Text.Color = Color.White;
+        Text.Draw("YOU WIN", 50, 200);
     }
     public void Update()
     {
@@ -59,9 +62,10 @@ public class Game
             bool doesBuildingHitPlayer = player.DoesPlayerHitBuildings(buildings[i]);
             if (doesBuildingHitPlayer)
             {
-
+                
                 GameOverLose();
                 Console.WriteLine("Hit");
+                return;
             }
 
             // Draw and move buildings
@@ -70,9 +74,15 @@ public class Game
 
             Vector2 playerPosition1 = player.position;
             Vector2 playerSize1 = player.size;
+           
+        }
+        if (Coins == 50)
+        {
+            GameOverWin();
+            return;
         }
 
-        
+
 
         //render player 
         player.Render();
