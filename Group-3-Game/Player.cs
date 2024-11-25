@@ -15,7 +15,6 @@ public class Player
     public Vector2 gravity = new Vector2(0, 10);
     bool isTouchingGround = false;
 
-
     //Setup Player
     public Player()
     {
