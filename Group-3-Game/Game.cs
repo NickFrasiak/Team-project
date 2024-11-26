@@ -11,8 +11,10 @@ public class Game
     // Calling classes 
     Buildings[] buildings = new Buildings[5];
 
+    // Call player
     Player player;
 
+    //Call sky (GRAPHIC)
     Sky sky;
 
     public void Setup()
@@ -22,6 +24,7 @@ public class Game
 
         player = new Player();
 
+        //run sky graphic
         sky = new Sky();
         sky.Setup();
 
@@ -40,7 +43,7 @@ public class Game
         Window.ClearBackground(Color.Clear);
         sky.Update();
 
-        // Draw Temporary Ground 
+        // Draw Ground 
         Draw.LineSize = 0;
         Draw.FillColor = Color.Green;
         Draw.Rectangle(0, 500, 800, 100);

@@ -15,16 +15,19 @@ public class Sky
     Texture2D Texture;
     public Sky()
     {
+        //Sky image position
         Position = new Vector2(0, 0);
     }
     
     public void Setup()
     {
+        //
         Texture = Graphics.LoadTexture("../../../SkyBackground.png");
     }
 
     public void Update()
     {
+        //
         Graphics.Draw(Texture, 0, 0);
     }
 
