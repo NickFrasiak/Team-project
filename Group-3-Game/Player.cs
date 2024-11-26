@@ -7,12 +7,13 @@ namespace Game10003;
 public class Player
 {
     public Vector2 position;
-    Vector2 velocity;
-    public float size;
-    int maxSpeed = 200;
-    int jumpHeight = 450;   
-    Color color;
-    Vector2 gravity = new Vector2(0, 10);
+    public Vector2 velocity;
+    public Vector2 size;
+    public int maxSpeed = 200;
+    public int jumpHeight = 450;   
+    public Color color;
+    public Vector2 gravity = new Vector2(0, 10);
+    public bool isTouchingGround = false;
 
    
     //Setup Player
@@ -59,16 +60,18 @@ public class Player
         //gravity
         position += velocity * Time.DeltaTime;
 
-        if(position.Y > 500 - size)
+        if(position.Y > 440)
         {
             velocity.Y = 0;
             position.Y = 440;
             isTouchingGround = true;
+
         }
         // spacebar input to jump
-        if (Input.IsKeyboardKeyPressed(KeyboardInput.Space))
+        if (Input.IsKeyboardKeyPressed(KeyboardInput.Space) && isTouchingGround)
         {
             velocity.Y -= velocity.Y + jumpHeight;
+            isTouchingGround  = false;
         }
     }
 

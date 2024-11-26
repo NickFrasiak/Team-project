@@ -13,12 +13,17 @@ public class Game
 
     Player player;
 
+    Sky sky;
+
     public void Setup()
     {
-        player = new Player();
-
         // Set Window Size
         Window.SetSize(800, 600);
+
+        player = new Player();
+
+        sky = new Sky();
+        sky.Setup();
 
         // Set up initial buildings
         for (int i = 0; i < buildings.Length; i++)
@@ -32,8 +37,8 @@ public class Game
 
     public void Update()
     {
-        Window.ClearBackground(Color.OffWhite);
-
+        Window.ClearBackground(Color.Clear);
+        sky.Update();
 
         // Draw Temporary Ground 
         Draw.LineSize = 0;
