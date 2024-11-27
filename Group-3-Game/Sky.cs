@@ -21,14 +21,23 @@ public class Sky
     
     public void Setup()
     {
+        Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
+
         //
-        Texture = Graphics.LoadTexture("../../../SkyBackground.png");
+        Texture = Graphics.LoadTexture("../../../Assets/SkyBackground.png");
     }
 
     public void Update()
     {
         //
         Graphics.Draw(Texture, 0, 0);
+        Position.X -= 10;
+       
+        //if (Position.X < -800)
+        {
+            Position.X = 0;
+        }
+;
     }
 
 }
