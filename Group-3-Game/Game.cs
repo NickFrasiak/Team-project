@@ -11,6 +11,15 @@ public class Game
     Buildings[] buildings = new Buildings[5];
     Player player;
 
+    Sky sky;
+
+    Color coinColor = Color.Yellow;
+    Coins coin;
+    // Track player score 
+    int score = 0;
+    bool isGameOverLose = false;
+    bool isGameOverWin = false;
+
     public void Setup()
     {
         // Set Window Size
@@ -49,6 +58,7 @@ public class Game
             GameOverWin();
             return; // Stop any further code from running in update
         }
+
         // Draw Ground
         Draw.LineSize = 0;
         Draw.FillColor = Color.Green;
