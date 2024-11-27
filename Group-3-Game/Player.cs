@@ -18,7 +18,7 @@ public class Player
     //Setup Player
     public Player()
     {
-        size = Vector2.One * 30; 
+        size = Vector2.One * 60;
         position = new Vector2(150, 400);
         velocity = new Vector2();
         color = Color.Red;
@@ -45,7 +45,7 @@ public class Player
 
         return isColliding;
     }
- 
+
     public void UpdatePosition()
     {
         if (velocity.Y <= maxSpeed)
