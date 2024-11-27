@@ -18,7 +18,7 @@ public class Player
     //Setup Player
     public Player()
     {
-        size = Vector2.One * 60;
+        size = Vector2.One * 30;
         position = new Vector2(150, 400);
         velocity = new Vector2();
         color = Color.Red;
