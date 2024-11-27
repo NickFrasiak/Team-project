@@ -10,18 +10,16 @@ public class Game
     // Calling classes 
     Buildings[] buildings = new Buildings[5];
     Player player;
-    Color coinColor = Color.Yellow;
-    Coins coin;
-    // Track player score 
-    int score = 0;
-    bool isGameOverLose = false;
-    bool isGameOverWin = false;
+
     public void Setup()
     {
-        player = new Player();
-
         // Set Window Size
         Window.SetSize(800, 600);
+
+        player = new Player();
+
+        sky = new Sky();
+        sky.Setup();
 
         // Set up initial buildings
         for (int i = 0; i < buildings.Length; i++)
@@ -37,7 +35,8 @@ public class Game
     }
     public void Update()
     {
-        Window.ClearBackground(Color.OffWhite);
+        Window.ClearBackground(Color.Clear);
+        sky.Update();
 
         // Draw Temporary Ground 
         if (isGameOverLose == true)
