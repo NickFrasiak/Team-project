@@ -11,7 +11,6 @@ public class Game
     Buildings[] buildings = new Buildings[5];
     Player player;
 
-    //Call sky (GRAPHIC)
     Sky sky;
 
     Color coinColor = Color.Yellow;
@@ -28,7 +27,6 @@ public class Game
 
         player = new Player();
 
-        //run sky graphic
         sky = new Sky();
         sky.Setup();
 
@@ -50,6 +48,18 @@ public class Game
         sky.Update();
 
         // Draw Temporary Ground 
+        if (isGameOverLose == true)
+        {
+            GameOverLose();
+            return; // Stop any further code from running in update
+        }
+        if (isGameOverWin == true)
+        {
+            GameOverWin();
+            return; // Stop any further code from running in update
+        }
+
+        // Draw Ground
         Draw.LineSize = 0;
         Draw.FillColor = Color.Green;
         Draw.Rectangle(0, 500, 800, 100);
