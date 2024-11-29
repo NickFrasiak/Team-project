@@ -24,7 +24,7 @@ public class Sky
         Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
 
         //
-        Texture = Graphics.LoadTexture("../../../Assets/SkyBackground.png");
+        Texture = Graphics.LoadTexture("../../../Assets/SkyBackgroundFixed.png");
     }
 
     public void Update()
