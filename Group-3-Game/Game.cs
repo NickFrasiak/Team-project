@@ -1,21 +1,25 @@
 using System;
-﻿using System.Numerics;
+using System.Numerics;
 
 namespace Game10003;
-
 public class Game
 {
     // Setting Up Colors
     Color buildingColor = new Color(0x46, 0x47, 0x4c);
-
+    Color GameOverColor = new Color(254, 129, 129);
     // Calling classes 
     Buildings[] buildings = new Buildings[5];
-
-    // Call player
     Player player;
 
     //Call sky (GRAPHIC)
     Sky sky;
+
+    Color coinColor = Color.Yellow;
+    Coins coin;
+    // Track player score 
+    int score = 0;
+    bool isGameOverLose = false;
+    bool isGameOverWin = false;
 
     public void Setup()
     {
@@ -36,44 +40,68 @@ public class Game
             building.buildingSize.X = 50;
             buildings[i] = building;
         }
-    }
 
+        // Initialize coin
+        coin = new Coins(new Vector2(700, 350), 20, coinColor, -200);
+    }
     public void Update()
     {
         Window.ClearBackground(Color.Clear);
         sky.Update();
 
-        // Draw Ground 
+        // Draw Temporary Ground 
         Draw.LineSize = 0;
         Draw.FillColor = Color.Green;
         Draw.Rectangle(0, 500, 800, 100);
 
-
         // Draw the buildings 5 times
+        // Draw and move buildings
         for (int i = 0; i < buildings.Length; i++)
         {
-
-            bool doesBuildingHitPlayer = player.DoesPlayerHitBuildings(buildings[i]);
-            if (doesBuildingHitPlayer)
+            if (player.DoesPlayerHitBuildings(buildings[i]))
             {
-                Console.WriteLine("Hit");
+                isGameOverLose = true;
+                return;
             }
-
-            // Draw and move buildings
             buildings[i].DrawBuildings();
             buildings[i].Move(buildings);
-
-            Vector2 playerPosition1 = player.position;
-            Vector2 playerSize1 = player.size;
         }
 
-        
+        // Draw and move coin
+        coin.DrawCoins();
+        coin.Move();
 
-        //render player 
+        // Check for coin collision
+        if (coin.DoesPlayerHitCoins(player))
+        {
+            score++;
+        }
+
+        // Check win condition
+        if (score >= 200)
+        {
+            isGameOverWin = true;
+            return;
+        } // Draw Score
+        Text.Color = Color.Black;
+        Text.Draw($"Current score: {score}", 300, 500);
+        // Render player
         player.Render();
         player.UpdatePosition();
 
     }
-
-
+    void GameOverLose()
+    {
+        Text.Size = 100;
+        Window.ClearBackground(GameOverColor);
+        Text.Color = Color.White;
+        Text.Draw("GAME OVER :(", 50, 200);
+    }
+    void GameOverWin()
+    {
+        Text.Size = 100;
+        Window.ClearBackground(GameOverColor);
+        Text.Color = Color.White;
+        Text.Draw("YOU WIN", 50, 200);
+    }
 }

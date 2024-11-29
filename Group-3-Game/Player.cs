@@ -15,11 +15,10 @@ public class Player
     public Vector2 gravity = new Vector2(0, 10);
     public bool isTouchingGround = false;
 
-   
     //Setup Player
     public Player()
     {
-        size = Vector2.One * 60;
+        size = Vector2.One * 30;
         position = new Vector2(150, 400);
         velocity = new Vector2();
         color = Color.Red;
