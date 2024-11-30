@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Game10003;
 
@@ -7,6 +8,7 @@ public class Coins
 {
 
     public Vector2 position;
+    public Vector2 textPosition;
     public float radius;
     public Color color;
     private float speed;
@@ -15,6 +17,7 @@ public class Coins
     public Coins(Vector2 startPosition, float coinRadius, Color coinColor, float movementSpeed)
     {
         position = startPosition;
+        textPosition = startPosition;
         radius = coinRadius;
         color = coinColor;
         speed = movementSpeed;
@@ -30,6 +33,10 @@ public class Coins
     {
         
         position.X += Time.DeltaTime * speed;
+        textPosition.X += Time.DeltaTime * speed;
+        //tutorial message
+        Text.Color = Color.White;
+        Text.Draw("Press space to jump, avoid the buildings, increase your score by collecting coins!", textPosition.X, 100);
         // Reset position if it moves off-screen
         if (position.X < -100 || collected == true)
         {

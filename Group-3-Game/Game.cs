@@ -87,10 +87,6 @@ public class Game
             score++;
             
         }
-        else
-        { 
-            
-        }
 
         // Check win condition
         if (score >= 50)
