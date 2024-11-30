@@ -10,6 +10,8 @@ public class Coins
     public float radius;
     public Color color;
     private float speed;
+    public bool collected = false;
+    
     public Coins(Vector2 startPosition, float coinRadius, Color coinColor, float movementSpeed)
     {
         position = startPosition;
@@ -22,16 +24,21 @@ public class Coins
         Draw.LineSize = 0;
         Draw.FillColor = color;
         Draw.Circle(position, radius);
+        
     }
     public void Move()
     {
+        
         position.X += Time.DeltaTime * speed;
         // Reset position if it moves off-screen
-        if (position.X < -100)
+        if (position.X < -100 || collected == true)
         {
             position.X = 800; // Reset X position
             position.Y = Random.Float(300, 500); // Randomize Y position
+            collected = false;
         }
+        
+
     }
     public bool DoesPlayerHitCoins(Player player)
     {
@@ -48,6 +55,12 @@ public class Coins
         // Check for collision
         bool horizontalCollision = playerRight >= coinLeftEdge && coinRightEdge >= playerLeft;
         bool verticalCollision = playerBottom >= coinTopEdge && playerTop <= coinBottomEdge;
+        if (horizontalCollision == true && verticalCollision == true)
+        {
+            collected = true;
+        }
         return horizontalCollision && verticalCollision;
+        
+
     }
 }

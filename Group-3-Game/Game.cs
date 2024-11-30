@@ -85,10 +85,15 @@ public class Game
         if (coin.DoesPlayerHitCoins(player))
         {
             score++;
+            
+        }
+        else
+        { 
+            
         }
 
         // Check win condition
-        if (score >= 200)
+        if (score >= 50)
         {
             isGameOverWin = true;
             return;
