@@ -93,7 +93,8 @@ public class Game
         {
             isGameOverWin = true;
             return;
-        } // Draw Score
+        } 
+        // Draw Score
         Text.Color = Color.Black;
         Text.Draw($"Current score: {score}", 300, 500);
         // Render player
@@ -107,6 +108,8 @@ public class Game
         Window.ClearBackground(GameOverColor);
         Text.Color = Color.White;
         Text.Draw("GAME OVER :(", 50, 200);
+        Text.Size = 50;
+        Text.Draw($"Your score: {score}", 200, 400);
     }
     void GameOverWin()
     {
