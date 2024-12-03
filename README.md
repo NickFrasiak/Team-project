@@ -1,1 +1,1 @@
-This game is a side scroller similar to the offline dinasour game implemented inside of google chrome. You must jump over the buildings that are coming at you while also trying to collect as much coins as possible, the goal is to get a score of 200 to win. 
+This game is a side scroller similar to the offline dinasour game implemented inside of google chrome. You must jump over the buildings that are coming at you while also trying to collect as much coins as possible, the goal is to get a score of 50 to win. 
