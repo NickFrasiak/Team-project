@@ -85,14 +85,16 @@ public class Game
         if (coin.DoesPlayerHitCoins(player))
         {
             score++;
+            
         }
 
         // Check win condition
-        if (score >= 200)
+        if (score >= 50)
         {
             isGameOverWin = true;
             return;
-        } // Draw Score
+        } 
+        // Draw Score
         Text.Color = Color.Black;
         Text.Draw($"Current score: {score}", 300, 500);
         // Render player
@@ -106,6 +108,8 @@ public class Game
         Window.ClearBackground(GameOverColor);
         Text.Color = Color.White;
         Text.Draw("GAME OVER :(", 50, 200);
+        Text.Size = 50;
+        Text.Draw($"Your score: {score}", 200, 400);
     }
     void GameOverWin()
     {
